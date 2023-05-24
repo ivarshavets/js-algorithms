@@ -138,6 +138,8 @@ class LinkedList {
     return this.toArray().join();
   }
 
+  // Space complexity : O(n)
+  // The extra space for a new list
   reverse() {
     let currentNode = this.head;
     const reversedList = new LinkedList();
@@ -164,8 +166,21 @@ class LinkedList {
     reversedList.head = head
     return reversedList.toString();
   }
-}
 
-const arr = [1,2,3,4]
-const list = new LinkedList().fromArray(arr)
-console.log(list.reverse())
+  // Time complexity : O(n).
+  // Assume that n is the list's length, the time complexity is O(n).
+  // Space complexity : O(1).
+  reverse3() {
+    let current = head;
+    let previous = null;
+
+    while (current) {
+      let nextTemp = current.next;
+      current.next = previous;
+      previous = current;
+      current = nextTemp;
+    }
+
+    return previous
+  };
+}
