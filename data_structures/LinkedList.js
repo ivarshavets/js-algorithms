@@ -165,3 +165,7 @@ class LinkedList {
     return reversedList.toString();
   }
 }
+
+const arr = [1,2,3,4]
+const list = new LinkedList().fromArray(arr)
+console.log(list.reverse())
