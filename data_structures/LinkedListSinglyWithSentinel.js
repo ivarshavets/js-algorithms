@@ -6,6 +6,12 @@
 // simplify insert and delete.
 // Sentinels nodes will be used here to simplify insert and delete.
 
+// Complexity Analysis
+// Time complexity: O(1) for addAtHead.
+// O(k) for get, addAtIndex, and deleteAtIndex, where k is an index of the element to get, add or delete.
+// O(N) for addAtTail.
+// Space complexity: O(1) for all operations.
+
 class ListNode {
   constructor(value) {
     this.val = value;
