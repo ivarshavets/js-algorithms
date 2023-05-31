@@ -77,7 +77,38 @@ class LinkedList {
     return currentNode
   }
 
+  // Approach with sentinel node
+  // Sentinel nodes are widely used in trees and linked lists
+  // as pseudo-heads, pseudo-tails, markers of level end, etc.
+  // They are purely functional, and usually does not hold any data.
+  // Their main purpose is to standardize the situation, for example,
+  // make linked list to be never empty and never headless and hence
+  // simplify insert and delete.
+
+  // Time complexity: O(N), it's one pass solution.
+
+  // Space complexity: O(1), it's a constant space solution.
+
   delete(value) {
+    let sentinelNode = new LinkedListNode()
+    sentinelNode.next = this.head
+
+    let prev = sentinelNode
+    let curr = this.head
+    while (curr) {
+        if (curr.value === value) {
+            prev.next = curr.next
+        } else {
+          prev = curr
+        }
+
+        curr = curr.next
+    }
+
+    return this
+  }
+
+  delete2(value) {
     // Delete first occurrence of value
     let currentNode = this.head
     let previousNode = null
@@ -183,4 +214,18 @@ class LinkedList {
 
     return previous
   };
+}
+
+
+// Create a loop in a linked list
+// where the last node points back to the second node in the list.
+const list = new LinkedList().fromArray([2, -1, 3, 0, 5])
+const createLoop = (list) => {
+  const loopStart = list.head.next
+  let current = list.head
+  while (current.next) {
+    current = current.next
+  }
+  current.next = loopStart
+  return list
 }
