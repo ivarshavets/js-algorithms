@@ -1,17 +1,3 @@
-// Sentinel nodes are widely used in trees and linked lists
-// as pseudo-heads, pseudo-tails, markers of level end, etc.
-// They are purely functional and serve as the guardians, and usually does not hold any data.
-// Their main purpose is to standardize the situation, for example,
-// make linked list to be never empty and never headless and hence
-// simplify insert and delete.
-// Sentinels nodes will be used here to simplify insert and delete.
-
-// Complexity Analysis
-// Time complexity: O(1) for addAtHead.
-// O(k) for get, addAtIndex, and deleteAtIndex, where k is an index of the element to get, add or delete.
-// O(N) for addAtTail.
-// Space complexity: O(1) for all operations.
-
 class ListNode {
   constructor(value) {
     this.val = value;
@@ -34,7 +20,8 @@ class MyLinkedList {
     }
 
     let curr = this.head
-    while (curr.next && index < this.size) {
+    // index steps needed to move from sentinel node to wanted index
+    for (let i = 0; i < index + 1; i++) {
       curr = curr.next
     }
     return curr.val
@@ -67,18 +54,18 @@ class MyLinkedList {
   // Add a node of value val before the index-th node in the linked list.
   // If index equals to the length of linked list, the node will be appended to the end of linked list.
   // If index is greater than the length, the node will not be inserted.
-  addAtIndex(index, val) {
+  addAtIndex(indexRaw, val) {
     const nodeToAdd = new ListNode(val)
 
-    if (index > this.size) {
+    if (indexRaw > this.size) {
       return false
     }
 
-    index = index < 0 ? 0 : index
+    let index = indexRaw < 0 ? 0 : indexRaw
 
     this.size += 1
     let prev = this.head
-    while (prev.next && index < this.size) {
+    for (let i = 0; i < index; i++) {
       prev = prev.next
     }
     nodeToAdd.next = prev.next
@@ -93,7 +80,7 @@ class MyLinkedList {
 
     this.size -= 1
     let prev = this.head
-    while (prev.next.next && index < this.size) {
+    for (let i = 0; i < index; i++) {
       prev = prev.next
     }
 
