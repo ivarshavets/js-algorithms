@@ -1,15 +1,3 @@
-class DoublyLinkedListNode {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
-    this.prev = null;
-  }
-
-  toString() {
-    return `${this.value}`;
-  }
-}
-
 class ListNode {
   constructor(value) {
     this.val = value;
@@ -18,7 +6,7 @@ class ListNode {
   }
 }
 
-class MyLinkedList {
+class LinkedList {
   constructor() {
     // sentinel nodes as pseudo-head and pseudo-tail
     this.head = new ListNode(0);
@@ -175,7 +163,7 @@ class MyLinkedList {
   };
 };
 
-const list = new MyLinkedList()
+const list = new LinkedList()
 list.addAtHead(1);
 list.addAtTail(3);
 list.addAtIndex(1,2) // linked list becomes 1->2->3
