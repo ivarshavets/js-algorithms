@@ -55,5 +55,5 @@ const hasCycle = function(head) {
 // Therefore, the worst case time complexity is O(N+K), which is O(n).
 //
 // Space complexity : O(1).
-// We only use two nodes (slow and fast) so the space complexity is O(1)O(1)O(1).
+// We only use two nodes (slow and fast) so the space complexity is O(1)).
 
