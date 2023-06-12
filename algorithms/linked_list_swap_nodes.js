@@ -52,8 +52,7 @@ const swapNodes = function(head, positionOne, positionTwo) {
   if (!nodeOne || !nodeTwo) {
     return null
   }
-
-  // 1, 2, 3, 4, 5, 6, 7
+  
   prevNodeTwo.next = nodeOne
   temp = nodeOne.next // dangling node when nodeOne.next reference will be changed to nodeTwo.next
   nodeOne.next = nodeTwo.next
