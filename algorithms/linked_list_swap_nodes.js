@@ -15,6 +15,62 @@ const swapNodes = function(head, positionOne, positionTwo) {
     return null
   }
 
+  // initialization
+  let count = 0
+  let current = head
+  let preNode = null
+  let nodeOne = null
+  let prevNodeOne = null
+  let nodeTwo = null
+  let prevNodeTwo = null
+  let temp = null // dangling node while swapping
+  let newHead = null
+
+  // Edge cases
+  if (!current) {
+    return head
+  }
+  if (positionOne === positionTwo) {
+    return head
+  }
+
+  while (current && count <= positionTwo) {
+    if (count === positionOne) {
+      nodeOne = current
+      prevNodeOne = preNode
+    } else if (count === positionTwo) {
+      nodeTwo = current
+      prevNodeTwo = preNode
+    }
+    preNode = current
+    current = current.next
+    count += 1
+  }
+
+  // Swap logic
+  // Edge case if list length is smaller than position One or Two and no nodeOne or nodeTwo is found
+  if (!nodeOne || !nodeTwo) {
+    return null
+  }
+
+  // 1, 2, 3, 4, 5, 6, 7
+  prevNodeTwo.next = nodeOne
+  temp = nodeOne.next // dangling node when nodeOne.next reference will be changed to nodeTwo.next
+  nodeOne.next = nodeTwo.next
+  nodeTwo.next = temp
+
+  // nodeOne is head
+  if (!prevNodeOne) {
+    head = nodeTwo
+  } else {
+    prevNodeOne.next = nodeTwo
+  }
+
+  return head
+}
+
+
+const swapNodes2 = function(head, positionOne, positionTwo) {
   if (positionOne === positionTwo) {
     return head
   }
@@ -74,52 +130,13 @@ const swapNodes = function(head, positionOne, positionTwo) {
   return head
 }
 
-const swapNodes2 = function(head, positionOne, positionTwo) {
-  // invalid inputs
-  if (!head || positionOne < 0 || positionTwo < 0 || positionOne > positionTwo) {
-    return null
-  }
-
-  if (positionOne === positionTwo) {
-    return head
-  }
-
-  let count = 0
-  let current = head
-  let nodeOne = null
-  let prevOne = null
-  let nodeTwo = null
-  let prevTwo = null
-
-  let newHead = null
-
-  while(current) {
-    if (count === positionOne) {
-      nodeOne = current
-    } else if (count === positionTwo) {
-      nodeTwo = current
-      break
-    }
-
-    current = current.next
-    count += 1
-  }
-
-  nodeOne.next = nodeTwo.next
-  nodeTwo.next = nodeOne
-  prevOne.next = nodeTwo
-  prevTwo.next = nodeOne
-
-  return head
-}
-
 const arr1 = [3, 4, 5, 2, 6, 1, 9]
-// const leftIndex = 2
-// const rightIndex = 5
+const leftIndex = 2
+const rightIndex = 5
 // Output = [3, 4, 1, 2, 6, 5, 9]
 
-const leftIndex = 0
-const rightIndex = 5
+// const leftIndex = 0
+// const rightIndex = 5
 // Output = [1, 4, 5, 2, 6, 3, 9]
 
 // const leftIndex = 4
