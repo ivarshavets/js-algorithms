@@ -27,13 +27,6 @@
  * Space Complexity: O(1), as we are using constant extra space to maintain list node pointers.
  */
 /**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
  * @param {ListNode} head
  * @param {number} k
  * @return {ListNode}
