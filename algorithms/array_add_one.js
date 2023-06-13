@@ -1,11 +1,9 @@
 // Problem
-// You are given a non-negative number in the form of list elements.
-// For example, the number 123 would be provided as arr = [1, 2, 3].
-// Add one to the number and return the output in the form of a new list.
-
-// Challenge: One way to solve this problem is to convert the input array into a number and then add one to it.
-// For example, if we have input = [1, 2, 3], you could solve this problem by creating the number 123 and
-// then separating the digits of the output number 124.
+// You are given a large integer represented as an integer array digits,
+// where each arr[i] is the ith digit of the integer.
+// The digits are ordered from most significant to least significant in left-to-right order.
+// The large integer does not contain any leading 0's.
+// Increment the large integer by one and return the resulting array of digits.
 
 // Approach: Schoolbook Addition with Carry
 // Let us identify the rightmost digit which is not equal to nine and increase that digit by one.
