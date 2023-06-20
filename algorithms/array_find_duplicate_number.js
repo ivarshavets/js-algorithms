@@ -25,8 +25,10 @@
 // x = {0, 3} range of possible values
 // 0, 1, 2, 3, x --> len(n)
 // 0, 1, 2, 3    --> len(n-1)
+
 // Time Complexity: O(n),
 // Space Complexity: O(1)
+
 const duplicateNumWithSum = function(arr){
   let currentSum = 0
   let expectedSum = 0
@@ -62,6 +64,7 @@ const findDuplicateWithSet = function(arr){
 // Since V8 v7.0 and Chrome 70 Timsort algorithm is used.
 // Which, for smaller arrays, has a time complexity of O(n) and space complexity of 0(1).
 // And for larger arrays, it has a time complexity of O(nlog(n)) and space complexity of O(n).
+
 const findDuplicateWithSort = function(nums) {
     nums.sort((a, b) => a - b)
     for(let i = 1; i <= nums.length; i++) {
@@ -83,6 +86,7 @@ const findDuplicateWithSort = function(nums) {
 // Each element is visited at most twice (once in the first loop to find the duplicate and once in the second loop to restore the numbers).
 // Space Complexity: O(1)
 //All manipulation is done in place, so no additional storage (barring one variable) is needed
+
 const findDuplicateWithNegativeMarker = function(nums) {
   let duplicate = null
   for (const num of nums) {
