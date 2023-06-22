@@ -10,7 +10,9 @@
 // Approach: Dynamic Programming
 // The iterative approach can be classified as dynamic programming because
 // we construct each row based on the previous row.
+// The elements of n^th row, except for the first and last element, are made up of elements of (n-1)^th row:
 // triangle[row][col] = triangle[row-1][col-1] + triangle[row-1][col]
+// This comes up till the 1^st row. We will follow a top-down approach.
 
 // Time complexity: O(numRows^2)
 // Although updating each value of triangle happens in constant time, it is performed O(numRows^2)times.
@@ -22,7 +24,9 @@
 // the input and output generally do not count towards the space complexity.
 
 const generatePascalTriangle = function(numRows) {
+  // First row of the triangle
   const triangle = [[1]]
+  // Building rows
   for (let rowNum = 1; rowNum < numRows; rowNum++) {
     const row = []
     // The first and the last row elements are always 1
@@ -31,11 +35,30 @@ const generatePascalTriangle = function(numRows) {
     // Each triangle element is equal to the sum of the elements
     // above-and-to-the-left and above-and-to-the-right.
     for (let j = 1; j < rowNum; j++) {
-      row[j] = triangle[rowNum-1][rowNum-1] + triangle[rowNum-1][j]
+      row[j] = triangle[rowNum-1][j-1] + triangle[rowNum-1][j]
     }
     triangle.push(row)
   }
   return triangle
 }
 
+const generatePascalTriangle_2 = function(numRows) {
+  const triangle = [[1]]
+  for (let rowNum = 1; rowNum < numRows; rowNum++) {
+    // Set the curRow from previous iteration as the prevRow
+    let prevRow = triangle[rowNum-1]
+    // first element of the row
+    const currRow = [1]
+    for (let j = 1; j < rowNum; j++) {
+      currRow[j] = prevRow[j-1] + prevRow[j]
+    }
+    // last element of the row
+    currRow.push(1)
+    triangle.push(currRow)
+  }
+  return triangle
+}
+
+// numRows = 5 => output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+// numRows = 1 => output: [[1]]
 console.log(generatePascalTriangle(5))
