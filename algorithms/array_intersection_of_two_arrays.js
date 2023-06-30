@@ -63,10 +63,6 @@ const intersect2 = function(nums1, nums2) {
   return result
 };
 
-// result.push(n);
-// map.set(n, map.get(n) - 1);
-// return result;
-
 // Input:
 const nums1 = [1,2,2,1]
 const nums2 = [2,2]
