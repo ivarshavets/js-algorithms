@@ -63,6 +63,40 @@ const intersect2 = function(nums1, nums2) {
   return result
 };
 
+// Approach: Sort
+// You can recommend this method when the input is sorted, or when the output needs to be sorted.
+// Here, we sort both arrays (assuming they are not sorted) and use two pointers to find common numbers in a single scan.
+
+// Time Complexity: O(nlogn + mlogm), where n and m are the lengths of the arrays.
+// We sort two arrays independently, and then do a linear scan.
+// Space Complexity: from O(logn + logm) to O(n+m), depending on the implementation of the sorting algorithm.
+// For the complexity analysis purposes, we ignore the memory required by inputs and outputs.
+// Approach: sort
+const intersectWithSort = function(nums1, nums2) {
+  const sorted1 = nums1.sort((a,b) => a-b)
+  const sorted2 = nums2.sort((a,b) => a-b)
+
+  let i = 0 // idx for iterating through sorted1
+  let j = 0 // idx for iterating through sorted2
+  let k = 0 // idx for storing found common number in the sorted1
+
+  // Compare the sorted number and move indices i along nums1, and j through sorted2
+  while (i < sorted1.length && j < sorted2.length) {
+    if (sorted1[i] < sorted2[j]) {
+      // Increment i if sorted1[i] is smaller.
+      ++i
+    } else if (sorted1[i] > sorted2[j]) {
+      // Increment j if sorted2[j] is smaller.
+      ++j
+    } else {
+      // If numbers are the same, copy the number into sorted1[k], and increment i, j and k
+      sorted1[k++] = sorted1[i++]
+      ++j
+    }
+  }
+  return nums1.slice(0, k)
+}
+
 // Input:
 const nums1 = [1,2,2,1]
 const nums2 = [2,2]
@@ -75,3 +109,6 @@ const nums4 = [9,4,9,8,4]
 
 console.log(intersect2(nums1, nums2))
 console.log(intersect2(nums3, nums4))
+
+console.log(intersectWithSort(nums1, nums2))
+console.log(intersectWithSort(nums3, nums4))
